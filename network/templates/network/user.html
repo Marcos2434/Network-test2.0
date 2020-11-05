@@ -32,7 +32,6 @@
         {% for post in posts %}
         <div class="card mb-3">
             <div class="card-body">
-                
                 <h5 class="card-title">
                     <a href="{% url 'user_profile' id=post.user.id %}" id="user">{{ post.user }}</a> 
                     {% if post.user == user %}

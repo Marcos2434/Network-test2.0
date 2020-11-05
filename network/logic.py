@@ -29,7 +29,6 @@ def get_profile(request, id):
         following_btn = True
 
     return {
-        'user' : target_user,
         'followers' : target_followers, 
         'following' : target_following,
         'posts' : posts,
