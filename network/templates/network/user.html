@@ -1,0 +1,81 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<br>
+<div class="container p-5">
+    <div id="animate">
+        <h2 id="profile_txt">{{username}}'s profile</h2><br>
+    </div><br>
+
+    <h4>Followers: <span style="color: rgb(117, 117, 117);"> {{ followers }}</span></h4>
+    <h4>
+        Following: <span style="color: rgb(117, 117, 117);">{{ following }}</span>
+
+        {% if user.is_authenticated and not self_profile %}
+            <form action="{% url 'user_profile' id=user.id %}" method="POST">
+                {% csrf_token %}
+                {% if following_btn %}
+                    <input value="follow" name="follow" hidden>
+                    <button class="btn btn-primary" id="follow_btn">Follow</button>
+                {% else %}
+                    <input value="" name="follow" hidden>
+                    <button class="btn btn-primary" id="follow_btn">Unfollow</button>
+                {% endif %}
+            </form>
+        {% endif %}
+    </h4><br>
+
+
+    <h3>posts</h3><br>
+
+        {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                
+                <h5 class="card-title">
+                    <a href="{% url 'user_profile' id=post.user.id %}" id="user">{{ post.user }}</a> 
+                    {% if post.user == user %}
+                        <button class="btn-sm btn-info" id="editButton" data-post_id="{{ post.id }}">Edit</button>
+                        <div>&nbsp;</div>
+                    {% endif %}
+                </h5>
+            
+                <div class="card-text" id="post_content">{{ post.content }}</div><br>
+                <h6 class="card-subtitle">{{ post.date_created }}</h6>
+
+                {% if user.is_authenticated %}
+                <i id="post_like" data-post_id="{{ post.id }}" class="far fa-heart icon-colour-r"></i>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">First</a>
+                </li>         
+                {% if posts.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">{{ posts.previous_page_number }}</a></li>
+                {% endif %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ posts.number }}">{{ posts.number }} <span class="sr-only">(current)</span></a>
+                </li>
+                {% if posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ posts.next_page_number }}">{{ posts.next_page_number }}</a>
+                    </li> 
+                {% endif %}
+                {% if not posts.paginator.num_pages == 1 %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">Last ({{ posts.paginator.num_pages }})</a></li>
+                {% endif %}
+                </ul>
+          </nav>  
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/network.js' %}"></script>
+{% endblock %}

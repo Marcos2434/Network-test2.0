@@ -1,0 +1,105 @@
+$theme-color: #c7c7c7;
+
+@keyframes slide {
+    0% {
+        width: 40%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+  
+@keyframes grow_txt {
+    0% {
+        font-size: small;
+    }
+    30% {
+        font-size: 40px;
+    }
+    100% {
+        font-size: xx-large;
+    }
+}
+
+#animate {
+    animation-name: slide;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes grow {
+    0% {
+        font-size: inherit;
+    }
+    30% {
+        font-size: 13px;
+    }
+    60% {
+        font-size: 18px;
+    }
+    100% {
+        font-size: 15px;
+    }
+}
+
+.grow {
+    animation-name: grow;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+}
+
+#post_like {
+    font-size: 15px;
+}
+
+#newPost {
+    width: 80%;
+    height: 110px;
+    min-height: 110px;
+    max-height: 150px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+
+    border: 1px solid $theme-color;
+}
+
+#editPost {
+    min-height: 50px;
+    max-height: 120px;
+    border: 1px solid $theme-color;
+}
+
+#txt_centered {
+    margin-left: 10%;
+
+    animation-name: grow_txt;
+    animation-duration: 1.1s;
+    animation-fill-mode: forwards;
+    //color: $theme-color;
+}
+
+#profile_txt {
+    animation-name: grow_txt;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+    //color: $theme-color;
+}
+
+#follow_btn {
+    float: right;
+}
+
+#submit {
+    float: right;
+    margin-right: 10%; 
+}
+
+.icon-colour-r {
+    color: red;
+}
+
+#editButton {
+    float: right;
+}
