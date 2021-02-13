@@ -143,4 +143,17 @@
 #editButton {
   float: right;
 }
+
+.img-center {
+  text-align: center;
+  padding: 60px;
+}
+
+.img-center img {
+  max-width: 100%;
+  border: 3px solid rgba(0, 0, 0, 0.603);
+  border-radius: 3px;
+  border-right-style: dashed;
+  border-left-style: dashed;
+}
 /*# sourceMappingURL=styles.css.map */
